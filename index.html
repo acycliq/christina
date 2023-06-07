@@ -130,16 +130,33 @@
     <div class="row">
         <div class="col-sm-12">
             <!-- Map -->
-                <div class="chart-wrapper" style="width: 60%">
+            <div class="col-sm-6">
+                <div class="chart-wrapper">
                     <div class="chart-title">
                         Dapi
                     </div>
-                    <div class="chart-stage midplaced">
+                    <div class="chart-stage">
                         <div id="leafletmap">
-                            <img id='dapi_img' src='pages/resized_page_000.jpg' />
+                            <img id='dapi_img' src='pages/dapi/resized_page_000.jpg' />
                         </div>
                     </div>
                 </div>
+            </div>
+            <!-- Map -->
+
+            <!-- Map -->
+            <div class="col-sm-6">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Microglia stain
+                    </div>
+                    <div class="chart-stage">
+                        <div id="leafletmap_1">
+                            <img id='microglia_img' src='pages/microglia/resized_page_000.jpg' />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Map -->
         </div>
     </div>
@@ -157,6 +174,7 @@
 <hr>
 
 <script>
+    var microglia_img = document.getElementById('microglia_img');
     var dapi_img = document.getElementById('dapi_img');
 
     function updateText(ckType){
@@ -170,7 +188,7 @@
         n = 66;
         out = [];
         for (var i = 0; i < n; i++){
-            var str = 'pages' + '/resized_page_' + zeroPad(i,3) + '.jpg';
+            var str = 'pages/' + stain + '/resized_page_' + zeroPad(i,3) + '.jpg';
             out.push(str)
         }
         return out
@@ -182,9 +200,9 @@
         }
         console.log('page is ' + value);
 
-        var dapi_arr = getFiles('dapi_pages', image_name, series_num, boundariesFlag);
-        // var lamin_arr = getFiles('lamin_pages', image_name, series_num, boundariesFlag);
-        // lamin_img.src = lamin_arr[value];
+        var dapi_arr = getFiles('dapi', image_name, series_num, boundariesFlag);
+        var microglia_arr = getFiles('microglia', image_name, series_num, boundariesFlag);
+        microglia_img.src = microglia_arr[value];
         dapi_img.src = dapi_arr[value];
         document.getElementById("range").innerHTML=value;
     }
